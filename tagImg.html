@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<style>
+			html,
+			body {
+				/*margin: 0;
+                padding: 0;*/
+				width: 100%;
+				height: 100%;
+				font-family: "Helvetia Neue", Helvetia, Arial, sans-serif;
+				font-size: 14px;
+				line-height: 1.4 .2857143;
+				color: #333;
+				background-color: #fff;
+			}
+			
+			button {
+				width: 48px;
+				height: 26px;
+				background-color: #38AFC5;
+				opacity: 0.9;
+				border-radius: 4px;
+				padding: 3px;
+				cursor: pointer;
+			}
+			
+			ul,
+			li {
+				margin: 5px 0px 5px 5px;
+				padding: 0;
+				list-style: none;
+			}
+			
+			.top {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 36px;
+				margin: 0 auto;
+				background-color: #38AFC5;
+				padding: 0px;
+			}
+			
+			.title {
+				position: relative;
+				float: left;
+				width: 600px;
+				color: #fff;
+				font: 22px/1.5 tahoma, "microsoft yahei", "\5FAE\8F6F\96C5\9ED1";
+				margin: 0px 0px 5px 20px;
+			}
+			
+			.i18n_div {
+				position: absolute;
+				right: 30px;
+				top: 8px;
+				width: 50px;
+				height: 100%;
+				text-align: center;
+				margin: auto;
+			}
+			
+			.i18n_select {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				background: #38AFC5;
+			}
+			
+			.main_left {
+				position: absolute;
+				left: 0px;
+				top: 36px;
+				width: 200px;
+				height: calc(100% - 61px);
+			}
+			
+			.main_left_menu {
+				background: #F5F5F6;
+				margin: 20px;
+				padding: 18px 8px 8px 8px;
+				width: 140px;
+				height: 30px;
+				border: 1px solid #EBEBEB;
+				text-align: center;
+			}
+			
+			.main_left_filelist {
+				border-top: 2px solid #EBEBEB;
+				/*#D6DBDF;*/
+				width: 100%;
+				left: 0px;
+				top: 180px;
+				height: calc(100% - 210px);
+			}
+			
+			.main_left_filelist_title {
+				margin: 5px 0px 5px 20px;
+				top: 0px;
+				left: 0px;
+				width: 160px;
+				height: 16px;
+				color: #7b7b7c;
+				/*#8c8d8e;*/
+			}
+			
+			.main_left_filelist_ul {
+				left: 0px;
+				top: 16px;
+				width: 90%;
+				height: calc(100% - 81px);
+				border: 1px solid #EBEBEB;
+				margin: 0px 10px 0px 10px;
+			}
+			
+			.file_list_item_selected {
+				background-color: #cee4e8;
+				font-size: 15px;
+				cursor: pointer;
+			}
+			
+			.file_list_item_unselected {
+				background-color: #fff;
+				font-size: 14px;
+				cursor: pointer;
+			}
+			
+			.main_center {
+				position: absolute;
+				left: 200px;
+				top: 36px;
+				border-left: 1px solid #EBEBEB;
+				border-right: 1px solid #EBEBEB;
+				overflow-y: auto;
+				overflow-x: auto;
+				width: calc(100% - 400px);
+				height: calc(100% - 61px);
+			}
+			
+			.main_right {
+				position: absolute;
+				right: 0px;
+				top: 36px;
+				width: 200px;
+				height: calc(100% - 61px);
+			}
+			
+			.main_right_image_property {
+				/*top: 0px;*/
+				left: 0px;
+				width: 100%;
+				height: 150px;
+				padding: 5px 5px 5px 10px;
+				/*color: #7b7b7c;*/
+			}
+			
+			.main_right_image_property_title {
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				height: 20px;
+				margin-bottom: 10px;
+				margin-top: 10px;
+			}
+			
+			.main_right_image_property_btn {
+				bottom: 0px;
+				float: right;
+				width: 100%;
+				height: 20px;
+				text-align: right;
+				padding-right: 40px;
+			}
+			
+			.main_right_image_property_tr {}
+			
+			.main_right_image_property_td1 {
+				text-align: right;
+			}
+			
+			.main_right_image_property_td2 {
+				padding-left: 5px;
+			}
+			
+			.main_right_rect_property {
+				/*top: 150px;*/
+				left: 0px;
+				width: 100%;
+				height: 190px;
+				border-top: 2px solid #EBEBEB;
+				padding: 15px 5px 5px 10px;
+				/*color: #7b7b7c;*/
+			}
+			
+			.main_right_rect_property_label_select {
+				width: 100px;
+				height: 30px;
+			}
+			
+			.main_right_rect_property_td1 {
+				text-align: right;
+			}
+			
+			.main_right_rect_property_td2 {
+				padding-left: 5px;
+			}
+			
+			.main_right_rect_property_btn {
+				float: right;
+				width: 100%;
+				height: 20px;
+				text-align: right;
+				margin-top: 15px;
+				padding-right: 40px;
+			}
+			
+			.main_right_save_property {
+				left: 0px;
+				width: 100%;
+				border-top: 2px solid #EBEBEB;
+				padding: 15px 5px 5px 10px;
+			}
+			
+			.main_right_menu {
+				background: #F5F5F6;
+				padding: 8px 5px;
+				width: 80px;
+				height: 20px;
+				border: 1px solid #EBEBEB;
+				text-align: center;
+			}
+			
+			.footer {
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				width: 100%;
+				height: 20px;
+				margin: 0 auto;
+				border-top: 2px solid #EBEBEB;
+				/*background-color: #38AFC5;*/
+			}
+			
+			.svg {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+			}
+			
+			.img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: green;
+				z-index: 0;
+			}
+			
+			.manual_setting_panel {
+				position: absolute;
+				width: 800px;
+				height: 500px;
+				z-index: 10;
+				top: 60px;
+				left: calc((100% - 800px)/2);
+				background: #cee4e8;
+				border: 1px solid #38AFC5;
+			}
+			
+			.manual_setting_panel_text {
+				/*position: absolute;*/
+				top: 10px;
+				left: 10px;
+				width: calc(800px - 26px);
+				height: 420px;
+				margin: 10px 10px 15px 10px;
+			}
+			
+			.manual_setting_panel_bottom {
+				/*position: absolute;*/
+				/*bottom: 20px;*/
+			}
+			
+			.remote_interface_panel {
+				position: absolute;
+				width: 800px;
+				height: 650px;
+				z-index: 10;
+				top: 40px;
+				left: calc((100% - 800px)/2);
+				background: #cee4e8;
+				border: 1px solid #38AFC5;
+			}
+			
+			.remote_interface_panel_script {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				width: calc(800px - 26px);
+				height: 310px;
+			}
+			
+			.remote_interface_panel_button {
+				position: absolute;
+				bottom: 15px;
+			}
+			
+			.remote_interface_panel_test_return {
+				position: absolute;
+				top: 335px;
+				left: 10px;
+				width: calc(800px - 26px);
+				height: 260px;
+			}
+			.save_files_to_remote_panel {
+				position: absolute;
+				width: 800px;
+				height: 650px;
+				z-index: 10;
+				top: 40px;
+				left: calc((100% - 800px)/2);
+				background: #cee4e8;
+				border: 1px solid #38AFC5;
+			}
+			
+			.save_files_to_remote_panel_script {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				width: calc(800px - 26px);
+				height: 310px;
+			}
+			
+			.save_files_to_remote_panel_button {
+				position: absolute;
+				bottom: 15px;
+			}
+			
+			.save_files_to_remote_panel_test_return {
+				position: absolute;
+				top: 335px;
+				left: 10px;
+				width: calc(800px - 26px);
+				height: 260px;
+			}
+			
+			
+		</style>
+		<script src="third/axios.min.js"></script>
+		<!-- https://unpkg.com/axios/dist/axios.min.js-->
+		<script src="third/jszip.min.js"></script>
+		<script src="tagImg_model.js"></script>
+		<script src="tagImg_menu.js"></script>
+		<script src="tagImg_svg.js"></script>
+		<script src="tagImg_labels.js"></script>
+		<script src="tagImg_jszip.js"></script>
+		<script src="tagImg_dataset_voc.js"></script>
+		<script src="when.js"></script>
+		<script src="tagImg_image_handler.js"></script>
+		<script src="tagImg_i18n.js"></script>
+		<meta charset="utf-8">
+	</head>
+
+	<body onload="javascript:tagImg_menu.onloadBody()">
+		<header class="top">
+			<div class="title">TagImg</div>
+			<div class="i18n_div">
+				<select id="i18n_select" class="i18n_select" onchange="javascript:tagImg_menu.onchangeI18nSelect()">
+					<option name="i18n_zn" selected="true"  value="zn">
+						中文
+					</option>
+					<option name="i18n_en" value="en">
+						英文
+					</option>
+				</select>
+			</div>
+		</header>
+		<div class="main_left">
+			<div>
+				<div onclick="javascript:tagImg_menu.openFiles()" class="main_left_menu" style="cursor:pointer;">
+					<input type="file" id="open_files_file" multiple style="display:none" />
+					<i18n name="open_local_files"></i18n>
+				</div>
+				<div onclick="javascript:tagImg_menu.manualSetting()" class="main_left_menu" style="cursor:pointer;">
+					<i18n name="manual_setting"></i18n>
+				</div>
+				<div onclick="javascript:tagImg_menu.remoteInterface()" class="main_left_menu" style="cursor:pointer;"><i18n name="remote_interface"></i18n></div>
+			</div>
+			<div class="main_left_filelist">
+				<div class="main_left_filelist_title"><i18n name="file_list"></i18n></div>
+				<div class="main_left_filelist_ul">
+					<ul id="fileNameList"></ul>
+				</div>
+			</div>
+		</div>
+		<div class="main_center">
+			<svg id="svg_wrap" class="svg" onload="javascript:tagImg_svg.onSvgLoad()" xmlns="http://www.w3.org/2000/svg" version="1.1">
+				<defs>
+					<marker id="markerArrow" markerWidth="8" markerHeight="8" refx="2" refy="5" orient="auto">
+						<path d="M2,2 L2,8 L8,5 L2,2" style="fill: #61a8e0;" />      </marker>
+				</defs>
+			</svg>
+			<img id="img" class="img"></img>
+		</div>
+		<div class="main_right">
+			<div class="main_right_image_property">
+				<div class="main_right_image_property_title"><i18n name="image_property"></i18n>:</div>
+				<table>
+					<tr class="main_right_image_property_tr">
+						<td style="width:20%;" class="main_right_image_property_td1"><i18n name="width"></i18n>:</td>
+						<td style="width:30%;" class="main_right_image_property_td2"><span id="image_width"></span></td>
+						<td style="width:30%;"><input type="text" id="image_resize_width_text" style="width:90%;" /></td>
+						<td style="width:20%;">px</td>
+					</tr>
+					<tr class="main_right_image_property_tr">
+						<td class="main_right_image_property_td1"><i18n name="height"></i18n>:</td>
+						<td class="main_right_image_property_td2"><span id="image_height"></span></td>
+						<td><input type="text" id="image_resize_height_text" style="width:90%;" /></td>
+						<td>px</td>
+					</tr>
+					<tr class="main_right_image_property_tr">
+						<td class="main_right_image_property_td1"><i18n name="depth"></i18n>:</td>
+						<td class="main_right_image_property_td2"><span id="image_depth"></span></td>
+						<td></td>
+					</tr>
+				</table>
+				<div class="main_right_image_property_btn">
+					<button onclick="javascript:tagImg_menu.clickImagePropertyResizeBtn()"><i18n name="resize"></i18n></button>
+				</div>
+			</div>
+			<div id="rect_property" class="main_right_rect_property">
+				<table>
+					<tr>
+						<td style="width:20%;" class="main_right_rect_property_td1"><i18n name="label"></i18n>:</td>
+						<td style="width:60%;" class="main_right_rect_property_td2">
+							<select id="rect_labels" class="main_right_rect_property_label_select" onchange="javascript:tagImg_menu.onchangeRectLabels()">
+							</select>
+						</td>
+						<td style="width:20%;"></td>
+					</tr>
+					<tr>
+						<td style="width:20%;" class="main_right_rect_property_td1">x:</td>
+						<td style="width:60%;" class="main_right_rect_property_td2">
+							<input type="text" id="rect_x_text" style="width:95%"></input>
+						</td>
+						<td style="width:20%;">px</td>
+					</tr>
+					<tr>
+						<td class="main_right_rect_property_td1">y:</td>
+						<td class="main_right_rect_property_td2">
+							<input type="text" id="rect_y_text" style="width:95%"></input>
+						</td>
+						<td>px</td>
+					</tr>
+					<tr>
+						<td class="main_right_rect_property_td1"><i18n name="width"></i18n>:</td>
+						<td class="main_right_rect_property_td2">
+							<input type="text" id="rect_width_text" style="width:95%"></input>
+						</td>
+						<td>px</td>
+					</tr>
+					<tr>
+						<td class="main_right_rect_property_td1"><i18n name="height"></i18n>:</td>
+						<td class="main_right_rect_property_td2">
+							<input type="text" id="rect_height_text" style="width:95%"></input>
+						</td>
+						<td>px</td>
+					</tr>
+				</table>
+				<div class="main_right_rect_property_btn"><button id="rect_property_save_btn" onclick="javascript:tagImg_menu.clickRectPropertySetBtn()"><i18n name="save"></i18n></button></div>
+			</div>
+			<div class="main_right_save_property">
+				<table>
+					<td>
+						<div class="main_right_menu" style="cursor:pointer;" onclick="javascript:tagImg_menu.clickPrevImageBtn()"><i18n name="prev_image"></i18n></div>
+					</td>
+					<td>
+						<div class="main_right_menu" style="cursor:pointer;" onclick="javascript:tagImg_menu.clickNextImageBtn()"><i18n name="next_image"></i18n></div>
+					</td>
+				</table>
+				<table style="margin-top:20px;">
+					<tr>
+						<td><i18n name="dataset_type"></i18n>：</td>
+						<td>VOC2007<input type="radio" name="data_set_type" checked="true" disabled="true" /></td>
+					</tr>
+					<tr style="height:20px;">
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				<table>
+					<tr style="height:30px;">
+						<td><button style="width:100px;" onclick="javascript:tagImg_menu.exportFiles()"><i18n name="export_files"></i18n></button></td>
+					</tr>
+					<tr style="height:30px;">
+						<td><button style="width:150px;" onclick="javascript:tagImg_menu.saveFilesToRemote()"><i18n name="save_files_to_remote"></i18n></button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="footer">&nbsp;</div>
+		<div id="manual_setting_panel" class="manual_setting_panel" style="display: none;" draggable="true" ondragstart="javascript:tagImg_menu.ondragstartWindow(event)">
+			<div style="width:100%;"><textarea id="manual_setting_panel_text" class="manual_setting_panel_text" autofocus></textarea></div>
+			<div style="width:100%;">
+				<button class="manual_setting_panel_bottom" style="margin-left:295px;" onclick="javascript:tagImg_menu.clickManualSettingOK()"><i18n name="ok"></i18n></button>
+				<button class="manual_setting_panel_bottom" style="margin-left:30px;" onclick="javascript:tagImg_menu.clickManualSettingCheck()"><i18n name="check"></i18n></button>
+				<button class="manual_setting_panel_bottom" style="margin-left:30px;" onclick="javascript:tagImg_menu.clickManualSettingCancel()"><i18n name="cancel"></i18n></button>
+				<a class="manual_setting_panel_bottom" style="color:dodgerblue;margin-left:110px;cursor:pointer;" onclick="javascript:tagImg_menu.clickManualSettingExample1()"><i18n name="example1"></i18n></a>
+				<a class="manual_setting_panel_bottom" style="color:dodgerblue;margin-left:20px;cursor:pointer;" onclick="javascript:tagImg_menu.clickManualSettingExample2()"><i18n name="example2"></i18n></a>
+			</div>
+		</div>
+		<div id="remote_interface_panel" class="remote_interface_panel" style="display: none;" draggable="true" ondragstart="javascript:tagImg_menu.ondragstartWindow(event)">
+			<textarea id="remote_interface_panel_script" class="remote_interface_panel_script" autofocus></textarea>
+			<button class="remote_interface_panel_button" style="left:295px;margin-right:30px;" onclick="javascript:tagImg_menu.clickRemoteInterfaceOK()"><i18n name="ok"></i18n></button>
+			<button class="remote_interface_panel_button" style="right:375px;" onclick="javascript:tagImg_menu.clickRemoteInterfaceTest()"><i18n name="test"></i18n></button>
+			<button class="remote_interface_panel_button" style="right:295px;" onclick="javascript:tagImg_menu.clickRemoteInterfaceCancel()"><i18n name="cancel"></i18n></button>
+			<textarea id="remote_interface_panel_test_return" class="remote_interface_panel_test_return" disabled></textarea>
+		</div>
+		<div id="save_files_to_remote_panel" class="save_files_to_remote_panel" style="display: none;" draggable="true" ondragstart="javascript:tagImg_menu.ondragstartWindow(event)">
+			<textarea id="save_files_to_remote_panel_script" class="save_files_to_remote_panel_script" autofocus></textarea>
+			<button class="save_files_to_remote_panel_button" style="left:295px;margin-right:30px;" onclick="javascript:tagImg_menu.clickSaveFilesToRemoteOK()"><i18n name="ok"></i18n></button>
+			<button class="save_files_to_remote_panel_button" style="right:375px;" onclick="javascript:tagImg_menu.clickSaveFilesToRemoteTest()"><i18n name="test"></i18n></button>
+			<button class="save_files_to_remote_panel_button" style="right:295px;" onclick="javascript:tagImg_menu.clickSaveFilesToRemoteCancel()"><i18n name="cancel"></i18n></button>
+			<textarea id="save_files_to_remote_panel_test_return" class="save_files_to_remote_panel_test_return" disabled></textarea>
+		</div>
+	</body>
+
+</html>
